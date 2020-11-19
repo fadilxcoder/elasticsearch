@@ -1,27 +1,35 @@
 <?php
 
-require 'vendor/autoload.php';
+require 'functions.php';
 
-use Elasticsearch\ClientBuilder;
+$query = $client->search([
+    'size' => 100,
+    'index' => 'faker_data',
+    'body' => [
+        'query' => [
+            'match' => [
+                'name' => 'murazik'
+            ]
+        ]
+        // 'query' => [ 
+            // 'bool' => [
+                // 'filter' => [
+                    // 'term' => [ 'description' => 'doloremque' ]
+                    // 'term' => [ 'name' => 'ahmad' ]
+                // ],
+                // 'should' => [
+                //     'match' => [ 'my_other_field' => 'xyz' ]
+                // ]
+            // ]
+        // ]
+    ]
+]);
 
-$client = ClientBuilder::create()->build();
+// dump($query);
 
-/*
-$params = [
-    'index' => 'my_index',
-    'id'    => 'my_id',
-    'body'  => ['testField' => 'abc']
-];
+if ($query['hits']['total'] >= 1) { 
+    $results = $query['hits']['hits'];
+    dump($results);
+}
 
-$response = $client->index($params);
-print_r($response);
-
-*/
-
-$params = [
-    'index' => 'my_index',
-    'id'    => 'my_id'
-];
-
-$response = $client->get($params);
-print_r($response);
+?>
