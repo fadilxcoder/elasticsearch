@@ -19,6 +19,16 @@
 - http://localhost:9200/faker_data/faker_type_1/_search?pretty=true&q=*:*&size=1000
 - http://localhost:9200/faker_data/faker_type_1/dIiH4XUBdBy2cmH743CC : (Specific)
 
+# Docker
+
+- Build project : `docker-compose up --build`
+- Connect to `php-fpm` (fx_php_fpm) terminal
+- - CMD : `composer install`
+- - To view host file, use command : ` cat /etc/hosts`
+- Change elastic search connection details :
+- - `$hosts = [ '172.18.0.1:9200'];` (example)
+- - `$hosts = [ 'xxx.xx.x.x:9200'];` where xxx is the IP of **fx_nginx** in docker logs when built.
+- Populate elastic search : RUN file `insert-to-es.php`
 
 # Run
 

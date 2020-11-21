@@ -11,7 +11,7 @@ insert('elastic_search', [
 ]);
 */
 
-/*
+
 foreach(selectAll() as $data):
     $response = $client->index(
         [
@@ -27,6 +27,6 @@ foreach(selectAll() as $data):
     );
     dump($response);
 endforeach;
-*/
+
 
 ?>

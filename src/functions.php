@@ -11,24 +11,14 @@ Debugger::enable(Debugger::DEVELOPMENT);
 $faker = Factory::create();
 
 $hosts = [
-
-    // This is effectively equal to: "https://username:password!#$?*abc@foo.com:9200/elastic"
-    [
-        'host' => 'foo.com',
-        'port' => '9200',
-        'scheme' => 'https',
-        'path' => '/elastic',
-        'user' => 'username',
-        'pass' => 'password!#$?*abc'
-    ],
-
-    // This is equal to "http://localhost:9200/"
-    [
-        'host' => 'localhost',    // Only host is required
-    ]
+    '172.18.0.1:9200',
 ];
 
+
+// dump(gethostname());die;
+
 $client = ClientBuilder::create()           // Instantiate a new ClientBuilder
+                    ->setSSLVerification(false)
                     ->setHosts($hosts)      // Set the hosts
                     ->build();              // Build the client object
 

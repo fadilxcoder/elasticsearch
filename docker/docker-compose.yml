@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  php-fpm:
+    container_name: fx_php_fpm
+    build:
+      context: ./php-fpm
+    volumes:
+      - ../src:/var/www/html
+    links:
+      - elasticsearch
+
+  nginx:
+    container_name: fx_nginx
+    build:
+      context: ./nginx
+    volumes:
+      - ../src:/var/www/html
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/sites/:/etc/nginx/sites-available
+      - ./nginx/conf.d/:/etc/nginx/conf.d
+    ports:
+      - "8881:80"
+      - "8882:443"
+    depends_on:
+      - php-fpm
+
+  database:
+    container_name: fx_database
+    build:
+      context: ./database
+    environment:
+      - MYSQL_DATABASE=mydb
+      - MYSQL_USER=myuser
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=docker
+    volumes:
+      - ./database/data.sql:/docker-entrypoint-initdb.d/data.sql
+  
+  elasticsearch:
+    container_name: fx_elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+    networks:
+      - elastic
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "xpack.security.enabled=false"
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ./elastic/data:/usr/share/elasticsearch/data
+      - ./elastic/logs:/usr/share/elasticsearch/logs
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+networks:
+  elastic:
+    driver: bridge
