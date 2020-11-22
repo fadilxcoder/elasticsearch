@@ -11,21 +11,10 @@ $query = $client->search([
                 'name' => 'murazik'
             ]
         ]
-        // 'query' => [ 
-            // 'bool' => [
-                // 'filter' => [
-                    // 'term' => [ 'description' => 'doloremque' ]
-                    // 'term' => [ 'name' => 'ahmad' ]
-                // ],
-                // 'should' => [
-                //     'match' => [ 'my_other_field' => 'xyz' ]
-                // ]
-            // ]
-        // ]
     ]
 ]);
 
-// dump($query);
+dump($query['hits']);
 
 if ($query['hits']['total'] >= 1) { 
     $results = $query['hits']['hits'];

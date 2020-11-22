@@ -33,3 +33,12 @@
 # Run
 
 - Download Elasticsearch and run batch file : `run.bat`
+
+# Usage
+
+- file : `search.php`
+- search by **name** or **description**
+- Possible test data :
+- - *description* : **blanditiis**
+- - *name* : **murazik**
+- - *description* : **recusandae**
