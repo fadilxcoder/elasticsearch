@@ -1,7 +1,7 @@
 <?php
 
 require 'functions.php';
-
+/*
 $indexParams['index']  = 'faker_data'; 
 $client->indices()->create($indexParams);       
 
@@ -20,5 +20,5 @@ foreach(selectAll() as $data):
     );
     dump($response);
 endforeach;
-
+*/
 ?>
