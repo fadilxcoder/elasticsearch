@@ -11,26 +11,19 @@ Debugger::enable(Debugger::DEVELOPMENT);
 $faker = Factory::create();
 
 $hosts = [
-
-    // This is effectively equal to: "https://username:password!#$?*abc@foo.com:9200/elastic"
     [
-        'host' => 'foo.com',
-        'port' => '9200',
-        'scheme' => 'https',
-        'path' => '/elastic',
-        'user' => 'username',
-        'pass' => 'password!#$?*abc'
+        'host' => 'fx-development-5010443661.us-east-1.bonsaisearch.net',
+        'port' => '80',
+        'scheme' => 'http',
+        'user' => 'akapqcwant',
+        'pass' => 'hg44v0h9r5'
     ],
-
-    // This is equal to "http://localhost:9200/"
-    [
-        'host' => 'localhost',    // Only host is required
-    ]
+    // 'http://akapqcwant:hg44v0h9r5@fx-development-5010443661.us-east-1.bonsaisearch.net:80',  
 ];
 
-$client = ClientBuilder::create()           // Instantiate a new ClientBuilder
-                    ->setHosts($hosts)      // Set the hosts
-                    ->build();              // Build the client object
+$client = ClientBuilder::create()
+            ->setHosts($hosts)
+            ->build();
 
 # Show Errors
 ini_set('display_errors', 1);
@@ -56,22 +49,4 @@ function selectAll()
     $result = converter($query);
     
     return $result;
-}
-
-function insert($tbl, $data)
-{
-    global $connection;
-    foreach( array_keys($data) as $key ) 
-    {
-        $cleanString = $connection->real_escape_string($data[$key]);
-
-        $fields[] = "`$key`";
-        $values[] = "'" . $cleanString . "'";
-    }
-    $fields = implode(",", $fields);
-    $values = implode(",", $values);
-    $sql = "INSERT INTO `$tbl`($fields) VALUES ($values)";
-    $connection->query($sql);
-    
-    return true;
 }

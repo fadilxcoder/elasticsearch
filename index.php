@@ -2,34 +2,23 @@
 
 require 'functions.php';
 
-$query = $client->search([
-    'size' => 100,
-    'index' => 'faker_data',
-    'body' => [
-        'query' => [
-            'match' => [
-                'name' => 'murazik'
-            ]
+$indexParams['index']  = 'faker_data'; 
+$client->indices()->create($indexParams);       
+
+foreach(selectAll() as $data):
+    $response = $client->index(
+        [
+            'index' => 'faker_data',
+            'type'  => 'faker_type_1',
+            'body'  => [
+                'name' => $data->fullname,
+                'address' => $data->address,
+                'email' => $data->email,
+                'description' => $data->descp,
+            ],
         ]
-        // 'query' => [ 
-            // 'bool' => [
-                // 'filter' => [
-                    // 'term' => [ 'description' => 'doloremque' ]
-                    // 'term' => [ 'name' => 'ahmad' ]
-                // ],
-                // 'should' => [
-                //     'match' => [ 'my_other_field' => 'xyz' ]
-                // ]
-            // ]
-        // ]
-    ]
-]);
-
-// dump($query);
-
-if ($query['hits']['total'] >= 1) { 
-    $results = $query['hits']['hits'];
-    dump($results);
-}
+    );
+    dump($response);
+endforeach;
 
 ?>
