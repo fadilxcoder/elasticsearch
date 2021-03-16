@@ -23,3 +23,4 @@
 # Run
 
 - Download Elasticsearch and run batch file : `run.bat`
+- Chrome settings : https://fx-development-5010443661.us-east-1.bonsaisearch.net:443
