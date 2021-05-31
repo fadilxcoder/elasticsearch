@@ -3,7 +3,12 @@
 - https://www.elastic.co/downloads/elasticsearch (Download Elasticsearch)
 - https://github.com/elastic/elasticsearch-php (elasticsearch-php)
 - https://packagist.org/packages/elasticsearch/elasticsearch
-- https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html (Full documentation)
+
+# Full documentation
+
+- https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/index.html
+- https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/ElasticsearchPHP_Endpoints.html
+- https://www.elastic.co/guide/en/elasticsearch/client/php-api/current/Elasticsearch_Namespaces_IndicesNamespace.html
 
 # Notes
 

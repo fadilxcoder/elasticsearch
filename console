@@ -3,34 +3,17 @@
 
 require 'functions.php';
 
-$idxName = 'faker_data_' . rand(1, 999999);
+$idxName1 = 'faker_data_1';
+$idxName2 = 'faker_data_2';
 $type = 'fx_' . rand (0, 9);
 $aliasName = 'faker';
 
-# Create Index
-$indexParams = [
-    'index' =>  $idxName,
-];
-$client->indices()->create($indexParams);
-
-# Add aliase to Index
-$params = [
-    'body' => [
-        'actions'  => [
-            'add' => [
-                'index' => $idxName,
-                'alias' => $aliasName,
-            ]
-        ]
-    ]
-];
-$client->indices()->updateAliases($params);
-
+createIndexWithAlias($idxName1, $idxName2, $aliasName);
 
 foreach(selectAll() as $data):
     $response = $client->index(
         [
-            'index' => $idxName,
+            'index' => $aliasName,
             'type'  => $type,
             'body'  => [
                 'name' => $data->fullname,
