@@ -1,1 +1,1 @@
-C:/elasticsearch-7.9.3/bin/elasticsearch.bat
+C:/ESX/bin/elasticsearch.bat

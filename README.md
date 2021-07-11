@@ -22,4 +22,4 @@
 
 # Run
 
-- Download Elasticsearch and run batch file : `run.bat`
+- Download source Elasticsearch to *C:/ESX/* and run batch file : `run.bat`
